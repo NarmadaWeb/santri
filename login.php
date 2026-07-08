@@ -1,3 +1,38 @@
+<?php
+session_start();
+require_once 'includes/db.php';
+
+$error = '';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    $stmt = $conn->prepare("SELECT id, username, password, role FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($user = $result->fetch_assoc()) {
+        if (password_verify($password, $user['password'])) {
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+            $_SESSION['role'] = $user['role'];
+
+            if ($user['role'] == 'admin') {
+                header("Location: admin/dashboard.php");
+            } else {
+                header("Location: santri/dashboard.php");
+            }
+            exit();
+        } else {
+            $error = 'Password salah!';
+        }
+    } else {
+        $error = 'Username tidak ditemukan!';
+    }
+}
+?>
 <!-- Login - TPQ Al-Misbahul Qur'an -->
 <!DOCTYPE html>
 <html class="light" lang="id">
@@ -41,35 +76,27 @@
             <h1 class="font-headline-lg text-2xl font-bold text-primary">Al-Misbahul Qur'an</h1>
             <p class="font-body-md text-sm text-outline">Sistem Informasi Manajemen TPQ</p>
         </div>
-        <form class="space-y-6" id="loginForm">
-            <div>
-                <label class="block font-bold text-primary mb-2 text-sm" for="role">Masuk Sebagai</label>
-                <select class="block w-full px-3 py-3 border border-outline/20 rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none" id="role">
-                    <option value="admin">Admin / Pengelola</option>
-                    <option value="santri">Santri / Siswa</option>
-                </select>
+
+        <?php if ($error): ?>
+            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                <span class="block sm:inline"><?php echo $error; ?></span>
             </div>
+        <?php endif; ?>
+
+        <form class="space-y-6" method="POST" action="">
             <div>
                 <label class="block font-bold text-primary mb-2 text-sm" for="username">Username</label>
-                <input class="block w-full px-3 py-3 border border-outline/20 rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none" id="username" placeholder="Masukkan username" required type="text"/>
+                <input name="username" class="block w-full px-3 py-3 border border-outline/20 rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none" id="username" placeholder="Masukkan username" required type="text"/>
             </div>
             <div>
                 <label class="block font-bold text-primary mb-2 text-sm" for="password">Kata Sandi</label>
-                <input class="block w-full px-3 py-3 border border-outline/20 rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none" id="password" placeholder="Masukkan password" required type="password"/>
+                <input name="password" class="block w-full px-3 py-3 border border-outline/20 rounded-lg text-sm focus:ring-2 focus:ring-primary outline-none" id="password" placeholder="Masukkan password" required type="password"/>
             </div>
             <button class="w-full bg-primary-container text-white py-3 px-4 rounded-lg font-bold hover:brightness-110 active:scale-[0.98] transition-all" type="submit">Login</button>
         </form>
+        <div class="mt-6 text-center">
+            <p class="text-sm text-outline">Belum punya akun? <a href="register.php" class="text-primary font-bold hover:underline">Daftar Santri</a></p>
+        </div>
     </main>
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const role = document.getElementById('role').value;
-            if (role === 'admin') {
-                window.location.href = 'admin/dashboard.html';
-            } else {
-                window.location.href = 'santri/dashboard.html';
-            }
-        });
-    </script>
 </body>
 </html>
