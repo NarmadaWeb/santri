@@ -1,0 +1,114 @@
+<!-- Dashboard Santri - TPQ Al-Misbahul Qur'an -->
+<!DOCTYPE html>
+<html class="light" lang="id">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Dashboard Santri - TPQ Al-Misbahul Qur'an</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1a5c3a",
+              "secondary": "#c9a84c",
+              "tertiary": "#0d3b24",
+              "background": "#f5f7f0",
+              "on-surface": "#2d2d2d",
+              "outline": "#6b7a6e"
+            },
+            fontFamily: { "headline-md": ["Montserrat"], "body-md": ["Inter"] }
+          },
+        },
+      }
+    </script>
+    <style>
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .islamic-pattern { background-image: url("https://www.transparenttextures.com/patterns/arabesque.png"); background-blend-mode: overlay; }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-surface min-h-screen flex">
+    <aside class="h-full w-64 fixed left-0 top-0 bg-primary shadow-md flex flex-col py-6 z-50 overflow-y-auto text-white">
+        <div class="px-6 mb-10">
+            <h1 class="font-headline-md text-xl font-bold">Al-Misbahul Qur'an</h1>
+            <p class="text-xs opacity-60">Sistem Informasi Santri</p>
+        </div>
+        <nav class="flex-1 px-3 space-y-1">
+            <a class="flex items-center gap-3 px-4 py-3 bg-secondary/20 border-l-4 border-secondary font-bold" href="dashboard.html"><span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>Dashboard</a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all hover:bg-white/10" href="jadwal.html"><span class="material-symbols-outlined">calendar_month</span>Jadwal Pelajaran</a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all hover:bg-white/10" href="rapor.html"><span class="material-symbols-outlined">grade</span>Rapor Digital</a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all hover:bg-white/10" href="presensi.html"><span class="material-symbols-outlined">clipboard_check</span>Riwayat Presensi</a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all hover:bg-white/10" href="pembayaran.html"><span class="material-symbols-outlined">payments</span>Riwayat Bayar</a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all hover:bg-white/10" href="pengumuman.html"><span class="material-symbols-outlined">campaign</span>Pengumuman</a>
+            <a class="flex items-center gap-3 px-4 py-3 rounded-lg transition-all hover:bg-white/10" href="profil.html"><span class="material-symbols-outlined">person</span>Profil Saya</a>
+        </nav>
+        <div class="mt-auto px-6 pt-4 border-t border-white/10">
+            <a class="flex items-center gap-3 px-4 py-2 text-red-300 hover:bg-red-500/10 rounded-lg transition-all" href="../index.html"><span class="material-symbols-outlined">logout</span>Keluar</a>
+        </div>
+    </aside>
+
+    <main class="flex-1 md:ml-64  p-8 flex flex-col">
+        <header class="flex justify-between items-center mb-8">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-full bg-primary/10 overflow-hidden border-2 border-primary/20">
+                    <img class="w-full h-full object-cover" data-alt="A professional close-up portrait of a young Indonesian student." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjKOlp2lm_KSr_S1QsZjqS3K6LTnKQGLLuO_khYgULAnwgatVvScM7CzDhP7TnlXA-Q6YP0TR_uBLuncGa1b3AgJpIFyDVSZEX6m8an3fa3ILB4uv8spUZnlX_uVsEUGHf_AhV5EHwoMCrGvx-pOLFXKK88-yv1l3xlCQAm7zmVGn9A9YeaPb7wvYt6AZLVvEu41I_f6Ya9eU1mQ9_xEve3uIkQlDM8c4X6e2B20MsNHcnQdPmWl4ghY6PpUjXmykbkSpi1rNUC2sd"/>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-primary">Assalamu'alaikum, Ahmad!</h2>
+                    <p class="text-outline text-sm">Senin, 20 Mei 2024</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="relative rounded-2xl overflow-hidden bg-primary p-8 mb-8 text-white islamic-pattern shadow-lg">
+            <div class="relative z-10">
+                <h3 class="text-xl font-bold mb-2">Muroja'ah Hari Ini</h3>
+                <p class="opacity-80 max-w-lg mb-6">"Sebaik-baik kalian adalah yang mempelajari Al-Qur'an dan mengajarkannya." (HR. Bukhari)</p>
+                <div class="flex gap-4">
+                    <div class="bg-white/20 backdrop-blur-md p-4 rounded-xl">
+                        <p class="text-[10px] font-bold uppercase tracking-widest opacity-60 mb-1">Target Hafalan</p>
+                        <p class="font-bold">Surah At-Thariq</p>
+                    </div>
+                    <div class="bg-white/20 backdrop-blur-md p-4 rounded-xl">
+                        <p class="text-[10px] font-bold uppercase tracking-widest opacity-60 mb-1">Status SPP</p>
+                        <p class="font-bold text-secondary">Lunas (Mei)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div class="lg:col-span-2 space-y-8">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-outline/10">
+                    <h4 class="font-bold text-primary mb-4">Jadwal Hari Ini</h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 p-4 bg-background rounded-xl border border-outline/5">
+                            <div class="w-12 h-12 rounded-lg bg-primary/10 flex flex-col items-center justify-center text-primary">
+                                <span class="text-xs font-bold">15:30</span>
+                                <span class="text-[8px] uppercase">WIB</span>
+                            </div>
+                            <div class="flex-1">
+                                <p class="font-bold text-primary">Tajwid & Tahsin</p>
+                                <p class="text-xs text-outline">Ustadz Ahmad Fauzi • Ruang A1</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <div class="bg-white p-6 rounded-2xl shadow-sm border border-outline/10">
+                    <h4 class="font-bold text-primary mb-4">Pengumuman</h4>
+                    <div class="p-4 bg-secondary/5 border border-secondary/20 rounded-xl">
+                        <p class="text-xs font-bold text-secondary uppercase mb-1">Penting</p>
+                        <p class="text-sm font-bold text-primary mb-1">Ujian Semester</p>
+                        <p class="text-xs text-outline leading-relaxed">Ujian lisan hafalan akan dimulai tanggal 1 Juni 2024...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
